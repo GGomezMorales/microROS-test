@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DOCKER_IMAGE_NAME="microros_project"
+CONTAINER_NAME="microros_project_container"
+ROS_NETWORK="host"

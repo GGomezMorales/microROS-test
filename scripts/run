@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PROJECT_ROOT="$(cd "$(dirname "$0")"; cd ..; pwd)"
+source ${PROJECT_ROOT}/config
+
+xhost +local:root 
+docker run --privileged --rm -it \
+    --name $CONTAINER_NAME \
+    --net=host \
+    --env="DISPLAY=$DISPLAY" \
+    --env="QT_X11_NO_MITSHM=1" \
+    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    --volume="$XAUTH:$XAUTH" \
+    --volume="/dev:/dev" \
+    -t \
+    ${DOCKER_IMAGE_NAME} 

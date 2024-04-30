@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+source /opt/ros/humble/setup.bash
+
+cd /microros_ws
+
+colcon build
+source install/local_setup.bash
+
+ros2 run micro_ros_setup create_firmware_ws.sh host
+
+ros2 run micro_ros_setup build_firmware.sh
+source install/local_setup.bash
+
+ros2 run micro_ros_setup create_agent_ws.sh
+source install/local_setup.bash
+
+ros2 run micro_ros_setup build_agent.sh
+source install/local_setup.bash
+
+ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+
+exec "$@" &
