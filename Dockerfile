@@ -2,8 +2,6 @@ FROM ros:humble
 
 SHELL ["/bin/bash", "-c"]
 
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-
 RUN mkdir microros_ws
 
 RUN cd microros_ws && \
@@ -15,16 +13,17 @@ RUN source /opt/ros/humble/setup.bash && \
     cd /microros_ws && \
     colcon build && \
     source install/local_setup.bash && \
-    ros2 run micro_ros_setup create_firmware_ws.sh host && \
-    ros2 run micro_ros_setup build_firmware.sh && \
-    source install/local_setup.bash && \
     ros2 run micro_ros_setup create_agent_ws.sh && \
     source install/local_setup.bash && \
     ros2 run micro_ros_setup build_agent.sh && \
     source install/local_setup.bash
 
-COPY ./setup /
-RUN chmod +x /setup
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "source /microros_ws/install/local_setup.bash" >> ~/.bashrc
 
-COPY ./running /
-RUN chmod +x /running
+COPY ./echo /
+RUN chmod +x /echo
+
+COPY ./autostart /
+RUN chmod +x /autostart
+ENTRYPOINT /autostart
