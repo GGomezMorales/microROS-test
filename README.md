@@ -1,4 +1,4 @@
-# microROS for ESP32 Using Arduino IDE
+# microROS for ESP32 (Wemos D1 R32) using Arduino IDE
 
 This repository contains a Docker image pre-configured with all the necessary software to run the microROS agent on ESP32 and Arduino devices. The Docker image simplifies the pre-compilation of the application, allowing focus on code development and deployment on the device.
 
@@ -24,7 +24,7 @@ This repository contains a Docker image pre-configured with all the necessary so
    ./scripts/run
    ```
 
-### Verification
+### Testing
 
 To verify that the application is running correctly, you can check its status using another terminal. Follow these steps:
 
