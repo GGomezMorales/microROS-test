@@ -18,7 +18,6 @@ This repository contains a Docker image pre-configured with all the necessary so
 
 2. Connect esp32 to your computer via USB
 
-   ```
 3. Build and Run the Docker Image:
 
    ```bash
